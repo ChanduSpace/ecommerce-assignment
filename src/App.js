@@ -1,12 +1,6 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
 
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Outlet,
-} from "react-router-dom";
+import { Routes, Route, Outlet } from "react-router-dom";
 
 import Header from "./components/Header";
 import Signup from "./components/Signup";
@@ -14,7 +8,7 @@ import Login from "./components/Login";
 import Verify from "./components/Verify";
 import Interested from "./components/Interested";
 
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {

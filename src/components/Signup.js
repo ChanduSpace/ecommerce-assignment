@@ -48,7 +48,6 @@ const Signup = () => {
         <div className="flex items-center mt-3 gap-1">
           <h4 className="font-normal text-xs">Have an Account?</h4>
           <Link to="/login">LOGIN</Link>
-          <h4 className="font-medium text-xs"></h4>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import categories from "../utils/categories.json";
 import { useState } from "react";
-import Pagination from "./Pagination";
+// import Pagination from "./Pagination";
 
 const Interested = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -14,7 +14,7 @@ const Interested = () => {
 
   let pageItems = [];
   console.log(categories.length);
-  console.log(currentPage);
+
   for (let i = 1; i <= categories.length / itemsPerPage; i++) {
     pageItems.push(i);
   }
@@ -47,17 +47,36 @@ const Interested = () => {
             })}
           </form>
           <div class="mt-3">
-            <button class="tracking-tighter  text-gray-400 active:text-black">
+            <button
+              class="tracking-tighter  text-gray-400 active:text-black"
+              onClick={() => {
+                if (currentPage > 2) {
+                  setCurrentPage(currentPage - 2);
+                }
+              }}
+            >
               {"<<"}
             </button>
-            <button class="ml-2 mr-1  text-gray-400 active:text-black">
+            <button
+              class="ml-2 mr-1  text-gray-400 active:text-black"
+              onClick={() => {
+                if (currentPage > 1) {
+                  setCurrentPage(currentPage - 1);
+                }
+              }}
+            >
               {"<"}
             </button>
 
             {pageItems.map((i) => {
               return (
                 <button
-                  class="ml-1 mr-1  text-gray-400 active:text-black"
+                  class=" text-gray-400 active:text-black"
+                  className={
+                    i === currentPage
+                      ? "active ml-1 mr-1"
+                      : "ml-1 mr-1  text-gray-400"
+                  }
                   onClick={() => {
                     setCurrentPage(i);
                   }}
@@ -70,7 +89,9 @@ const Interested = () => {
             <button
               class="ml-2 mr-1  text-gray-400 active:text-black"
               onClick={() => {
-                setCurrentPage(currentPage + 1);
+                if (currentPage < pageItems.length) {
+                  setCurrentPage(currentPage + 1);
+                }
               }}
             >
               {">"}
@@ -78,7 +99,9 @@ const Interested = () => {
             <button
               class="tracking-tighter  text-gray-400 active:text-black"
               onClick={() => {
-                setCurrentPage(currentPage + 2);
+                if (currentPage < pageItems.length - 1) {
+                  setCurrentPage(currentPage + 2);
+                }
               }}
             >
               {">>"}

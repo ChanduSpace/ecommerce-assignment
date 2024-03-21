@@ -33,9 +33,9 @@ const Interested = () => {
           <form class="align-middle">
             {currentPageItems.map((category, index) => {
               return (
-                <div class="mt-3" key={index}>
+                <div class="mt-3 flex items-center" key={index}>
                   <input
-                    class="peer w-4 h-4 focus:outline-none checked:bg-black appearance-none rounded-sm border bg-gray-300 checked:rounded-sm mr-1"
+                    class="peer w-4 h-4 focus:outline-none checked:bg-black appearance-none rounded-sm border bg-gray-300 checked:rounded-sm mr-2"
                     type="checkbox"
                     name={category}
                   />

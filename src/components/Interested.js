@@ -1,5 +1,24 @@
 import categories from "../utils/categories.json";
+import { useState } from "react";
+import Pagination from "./Pagination";
+
 const Interested = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(6);
+
+  const endPageIndex = currentPage * itemsPerPage;
+  const statePageIndex = endPageIndex - itemsPerPage;
+
+  const currentPageItems = categories.slice(statePageIndex, endPageIndex);
+  console.log(currentPageItems);
+
+  let pageItems = [];
+  console.log(categories.length);
+  console.log(currentPage);
+  for (let i = 1; i <= categories.length / itemsPerPage; i++) {
+    pageItems.push(i);
+  }
+
   return (
     <div className="flex justify-center ">
       <div className="flex flex-col p-5 border-2 mt-7 w-1/3 rounded-xl items-center">
@@ -12,9 +31,9 @@ const Interested = () => {
             My saved interests!
           </h1>
           <form class="align-middle">
-            {categories.map((category, index) => {
+            {currentPageItems.map((category, index) => {
               return (
-                <div key={index}>
+                <div class="mt-3" key={index}>
                   <input
                     class="peer w-4 h-4 focus:outline-none checked:bg-black appearance-none rounded-sm border bg-gray-300 checked:rounded-sm mr-1"
                     type="checkbox"
@@ -27,6 +46,44 @@ const Interested = () => {
               );
             })}
           </form>
+          <div class="mt-3">
+            <button class="tracking-tighter  text-gray-400 active:text-black">
+              {"<<"}
+            </button>
+            <button class="ml-2 mr-1  text-gray-400 active:text-black">
+              {"<"}
+            </button>
+
+            {pageItems.map((i) => {
+              return (
+                <button
+                  class="ml-1 mr-1  text-gray-400 active:text-black"
+                  onClick={() => {
+                    setCurrentPage(i);
+                  }}
+                >
+                  {i}
+                </button>
+              );
+            })}
+
+            <button
+              class="ml-2 mr-1  text-gray-400 active:text-black"
+              onClick={() => {
+                setCurrentPage(currentPage + 1);
+              }}
+            >
+              {">"}
+            </button>
+            <button
+              class="tracking-tighter  text-gray-400 active:text-black"
+              onClick={() => {
+                setCurrentPage(currentPage + 2);
+              }}
+            >
+              {">>"}
+            </button>
+          </div>
         </div>
       </div>
     </div>

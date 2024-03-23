@@ -4,16 +4,14 @@ import { useState } from "react";
 
 const Interested = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(6);
+  const [itemsPerPage] = useState(6);
 
   const endPageIndex = currentPage * itemsPerPage;
   const statePageIndex = endPageIndex - itemsPerPage;
 
   const currentPageItems = categories.slice(statePageIndex, endPageIndex);
-  console.log(currentPageItems);
 
   let pageItems = [];
-  console.log(categories.length);
 
   for (let i = 1; i <= categories.length / itemsPerPage; i++) {
     pageItems.push(i);
@@ -33,12 +31,12 @@ const Interested = () => {
           <form class="align-middle">
             {currentPageItems.map((category, index) => {
               return (
-                <div class="mt-3 flex items-center" key={index}>
+                <div class="mt-4 mb-3 flex items-center" key={index}>
                   <input
-                    class="peer w-4 h-4 focus:outline-none checked:bg-black appearance-none rounded-sm border bg-gray-300 checked:rounded-sm mr-2"
+                    className="peer w-4 h-4 focus:outline-none checked:bg-black appearance-none rounded-sm border bg-gray-300 checked:rounded-sm mr-2 relative"
                     type="checkbox"
                     name={category}
-                  />
+                  ></input>
                   <label for={category} className="text-xs font-medium">
                     {category.toUpperCase()}
                   </label>
